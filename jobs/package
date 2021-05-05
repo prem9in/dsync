@@ -1,0 +1,7 @@
+dotnet add package Microsoft.Extensions.Logging
+dotnet add package Azure.Data.Tables --prerelease
+dotnet add package Azure.Storage.Blobs
+dotnet add package Azure.Storage.Queues
+dotnet add package System.Configuration.ConfigurationManager
+dotnet add package Microsoft.Extensions.Logging.Abstractions
+dotnet add package Microsoft.Extensions.Hosting
