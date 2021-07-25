@@ -6,6 +6,7 @@ namespace jobs
     using Microsoft.Extensions.Logging;  
     using System.Threading;
     using System.Threading.Tasks;
+	using System.Collections.Generic;
 
     public class Processor<T> : IDisposable
 	{
@@ -67,13 +68,20 @@ namespace jobs
 			{
 				try
 				{
-					var msg = await _queueClient.ReceiveMessageAsync(TimeSpan.FromMinutes(1)).ConfigureAwait(false);
-					if (msg != null && msg.Value != null)
+					await Task.Delay(TimeSpan.FromSeconds(1));
+					var msg = await _queueClient.ReceiveMessagesAsync(4, TimeSpan.FromMinutes(10), cancellationToken).ConfigureAwait(false);
+					if (msg != null && msg.Value != null && msg.Value.Length > 0)
 					{
-						_logger.LogInformation($"Received message : {msg.Value.MessageId}");
-						await ProcessMessageAsync(msg.Value);    				
-						_logger.LogInformation($"Processed message : {msg.Value.MessageId}");
-						await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+						var runTasks = new List<Task<bool>>();
+						for (int i = 0; i < msg.Value.Length; i++)
+						{
+							_logger.LogInformation($"Received message : {msg.Value[i].MessageId}");
+							var trun = ProcessMessageAsync(msg.Value[i]); 
+							runTasks.Add(trun);   				
+							_logger.LogInformation($"Processed message : {msg.Value[i].MessageId}");
+						}
+
+						await Task.WhenAll(runTasks);
 					}					
 				}
 				catch (Exception e)

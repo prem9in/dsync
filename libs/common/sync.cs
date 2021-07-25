@@ -165,7 +165,7 @@ namespace libs.common
             
             var newFiles = GetNewFiles(runtime, allFiles);       
             var newFileCount = 0;
-            ulong totalSize = 0;
+            long totalSize = 0;
             if (newFiles.Any())
             {   
                 var errorList = new List<string>();                        
@@ -183,7 +183,7 @@ namespace libs.common
                     {
                         newFileCount++;
                         duplicates.Add(nfile.Id, nfile);
-                        totalSize = totalSize + (ulong)nfile.Size;
+                        totalSize = totalSize + nfile.Size;
                         var dfile = allDriveFiles.FirstOrDefault(a => a.Id == nfile.Id);
                         if (dfile == null)
                         {
@@ -270,7 +270,7 @@ namespace libs.common
             runtime.Log.LogInformation("Sync duration : " + elapsed);
             var syncInfo = new SyncInfo
             {            
-                Duration = elapsed,
+                Duration = elapsed.TotalSeconds,
                 Count = newFileCount,
                 Size = totalSize,
                 Timestamp = timeStamp,

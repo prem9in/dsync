@@ -27,7 +27,7 @@ namespace libs.common
                 {
                     if (_runtime == null)
                     {
-                        var cdiskconstring = "";
+                        var cdiskconstring = "DefaultEndpointsProtocol=https;AccountName=cdisk;AccountKey=oKBBDeSsfmkoxobEHwUg6j0hl82iKROUZsOhGgYcvcR4oGceJ70eRIx+v0DdpgmEp0CDXdcGbk2foGk7l8glIg==;EndpointSuffix=core.windows.net";
                         var cdiskTokenTable = new TableClient(cdiskconstring, "oneDriveToken");
                         var cdiskDriveTable = new TableClient(cdiskconstring, "DriveFiles");
                         var cdiskFileQueue = new QueueClient(cdiskconstring, "filesqueue");

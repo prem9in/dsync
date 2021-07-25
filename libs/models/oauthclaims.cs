@@ -12,9 +12,9 @@ namespace libs.models
         [JsonPropertyName("iss")]
         public string Issuer { get; set; }
         [JsonPropertyName("iat")]
-        public string IssuedAtTime { get; set; }
+        public int IssuedAtTime { get; set; }
         [JsonPropertyName("nbf")]
-        public string NotBeforeTime { get; set; }
+        public int NotBeforeTime { get; set; }
         [JsonPropertyName("oid")]
         public string ObjectIdentifier { get; set; }
         [JsonPropertyName("tid")]

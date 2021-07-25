@@ -17,19 +17,23 @@ namespace libs.models
             this.Id = driveItem.Id;
             this.Type = driveItem.Type.ToString();
             this.SyncId = syncId;
-            this.TakenDateTime = driveItem.Audio.TakenDateTime;
-            this.Album = driveItem.Audio.Album;
-            this.AlbumArtist = driveItem.Audio.AlbumArtist;
-            this.Artist = driveItem.Audio.Artist;
-            this.Bitrate = driveItem.Audio.Bitrate;
-            this.Copyright = driveItem.Audio.Copyright;
-            this.Title = driveItem.Audio.Title;
-            this.Track = driveItem.Audio.Track;
-            this.Year = driveItem.Audio.Year;
-            this.Genre = driveItem.Audio.Genre;
-            this.HasDrm = driveItem.Audio.HasDrm;
-            this.IsVariableBitrate = driveItem.Audio.IsVariableBitrate;
-            this.Duration = driveItem.Audio.Duration;
+            if (driveItem.Audio != null)
+            {
+                this.TakenDateTime = driveItem.Audio.TakenDateTime;
+                this.Album = driveItem.Audio.Album;
+                this.AlbumArtist = driveItem.Audio.AlbumArtist;
+                this.Artist = driveItem.Audio.Artist;
+                this.Bitrate = driveItem.Audio.Bitrate;
+                this.Copyright = driveItem.Audio.Copyright;
+                this.Title = driveItem.Audio.Title;
+                this.Track = driveItem.Audio.Track;
+                this.Year = driveItem.Audio.Year;
+                this.Genre = driveItem.Audio.Genre;
+                this.HasDrm = driveItem.Audio.HasDrm;
+                this.IsVariableBitrate = driveItem.Audio.IsVariableBitrate;
+                this.Duration = driveItem.Audio.Duration;
+            }
+           
             this.Timestamp = timestamp;
             this.ETag = Azure.ETag.All;
         }

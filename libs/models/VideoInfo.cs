@@ -17,10 +17,14 @@ namespace libs.models
             this.Id = driveItem.Id;
             this.Type = driveItem.Type.ToString();
             this.SyncId = syncId;
-            this.BitRate = driveItem.Video.BitRate;
-            this.Width = driveItem.Video.Width;
-            this.Height = driveItem.Video.Height;
-            this.Duration = driveItem.Video.Duration;
+            if (driveItem.Video != null)
+            {
+                this.BitRate = driveItem.Video.BitRate;
+                this.Width = driveItem.Video.Width;
+                this.Height = driveItem.Video.Height;
+                this.Duration = driveItem.Video.Duration;
+            }
+            
             this.Timestamp = timestamp;
             this.ETag = Azure.ETag.All;
         }

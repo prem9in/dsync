@@ -7,8 +7,8 @@ namespace libs.models
     public class SyncInfo : TableEntityBase
     {   
         public int Count { get; set; }
-        public TimeSpan Duration { get; set; }
-        public ulong Size { get; set; }  
+        public double Duration { get; set; }
+        public long Size { get; set; }  
 
         public override TableEntity ToTableEntity()
         {

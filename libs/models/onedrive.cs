@@ -53,6 +53,22 @@ namespace libs.models
 
     public class OneDriveItem
     {
+         private static Dictionary<string, FileType> fileTypeMap = new Dictionary<string, FileType>(){
+            {"video/mp4", FileType.Video}
+        };
+
+        private FileType NormalizeFileType(FileType defaultType)
+        {
+            var fileTypeKey = this.MimeType.ToLowerInvariant();
+            if (fileTypeMap.ContainsKey(fileTypeKey))
+            {
+                var fileType = fileTypeMap[fileTypeKey];
+                return fileType;
+            }
+
+            return defaultType;
+        }
+
         [JsonIgnore]
         public string FullPath
         {
@@ -92,7 +108,7 @@ namespace libs.models
                     result = FileType.Photo;
                 } 
                 
-                return result;
+                return NormalizeFileType(result);
             }
         }
 

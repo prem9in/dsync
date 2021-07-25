@@ -15,9 +15,13 @@ namespace libs.models
             this.RowKey = Extensions.NormalizeRowKey(driveItem.Id);
             this.Id = driveItem.Id;
             this.SyncId = syncId;
-            this.Altitude = driveItem.Location.Altitude;
-            this.Latitude = driveItem.Location.Latitude;
-            this.Longitude = driveItem.Location.Longitude;
+            if (driveItem.Location != null)
+            {
+                this.Altitude = driveItem.Location.Altitude;
+                this.Latitude = driveItem.Location.Latitude;
+                this.Longitude = driveItem.Location.Longitude;
+            }
+           
             this.Timestamp = timestamp;
             this.ETag = Azure.ETag.All;
         }
