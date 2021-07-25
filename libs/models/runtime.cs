@@ -7,7 +7,6 @@ namespace libs.models
     
     public class Runtime
     {
-        public HttpRequestMessage Request { get; set; }
         public TableClient AuthConnect { get; set; }
         public TableClient OnedriveConnect { get; set; }
         public TableClient FileInfoTable { get; set; }

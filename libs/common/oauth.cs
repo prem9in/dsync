@@ -72,10 +72,8 @@ namespace libs.common
             return response;
         }
 
-        public static async Task<HttpResponseMessage> CreateConnection(Runtime runtime)
-        {
-            var content = runtime.Request.Content;
-            string postMessage = await content.ReadAsStringAsync();
+        public static async Task<HttpResponseMessage> CreateConnection(Runtime runtime, string postMessage)
+        { 
             var codeResult = ParseCodeMessage(postMessage);
             if (codeResult.Item1 == null)
             {

@@ -203,8 +203,16 @@ namespace libs.common
             {
                 return this.Get("BDriveStorage");
             }
-        } 
-        
+        }
+
+        public string CDriveStorage
+        {
+            get
+            {
+                return this.Get("CDriveStorage");
+            }
+        }
+
         public string DriveContainer 
         {
             get 

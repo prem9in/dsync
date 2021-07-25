@@ -23,11 +23,11 @@ namespace libs.common
         {
             if (_runtime == null)
             {
-                lock(lockobj)
+                lock (lockobj)
                 {
                     if (_runtime == null)
                     {
-                        var cdiskconstring = "DefaultEndpointsProtocol=https;AccountName=cdisk;AccountKey=oKBBDeSsfmkoxobEHwUg6j0hl82iKROUZsOhGgYcvcR4oGceJ70eRIx+v0DdpgmEp0CDXdcGbk2foGk7l8glIg==;EndpointSuffix=core.windows.net";
+                        var cdiskconstring = AppConfiguration.Instance.CDriveStorage;
                         var cdiskTokenTable = new TableClient(cdiskconstring, "oneDriveToken");
                         var cdiskDriveTable = new TableClient(cdiskconstring, "DriveFiles");
                         var cdiskFileQueue = new QueueClient(cdiskconstring, "filesqueue");
@@ -43,20 +43,12 @@ namespace libs.common
                             OutputQueue = cdiskFileQueue,
                             DeleteQueue = cdiskDeleteQueue,
                             Log = new Logger<Runtime>()
-                        };                        
+                        };
                     }
                 }
             }
 
-            _runtime.Request = null;
             return _runtime;
-        }
-
-        public static Runtime Get(HttpRequestMessage request)
-        {
-            var result = RuntimeProvider.Get();
-            result.Request = request;
-            return result;
         }
     }
 }
